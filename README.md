@@ -26,6 +26,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About
+tl;dr now you can install Burp Suite (or patch your current setup) easily.
 
 In the past few months, I needed to install Burp suite more than I had imagined. And every time I found myself bamboozled with how to crack/activate it.
 
@@ -54,6 +55,15 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 <!-- GETTING STARTED -->
 ## Getting Started
+
+### Linux
+
+#### Download the latest release
+
+
+
+### Windows
+
 
 Simply download the [latest release](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and follow the instructions.
 
