@@ -11,12 +11,12 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Check out repo        
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Compile version-updater (golang)
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: 1.20.2
 
       - name: Build version-updater
         run: |
