@@ -63,11 +63,6 @@ var CategoryChoices = []string{"Professional", "Community"}
 
 var rawJSONFlag bool
 
-func init() {
-	log.SetOutput(os.Stderr)
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-}
-
 func contains[T comparable](elems []T, v T) bool {
 	for _, s := range elems {
 		if v == s {
@@ -75,6 +70,11 @@ func contains[T comparable](elems []T, v T) bool {
 		}
 	}
 	return false
+}
+
+func init() {
+	log.SetOutput(os.Stderr)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
 func main() {
