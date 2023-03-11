@@ -1,3 +1,5 @@
+name: Build for Windows
+
 on:
   push:
     branches:
@@ -6,7 +8,14 @@ on:
 jobs:
   build_windows_artifacts:
     name: Build Windows Installer and Portable editions
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Check out repo        
         uses: actions/checkout@v2
+      - name: Compile version-updater (golang)
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+        run: |
+          go build -o version-updater.exe version-updater.go
+        
