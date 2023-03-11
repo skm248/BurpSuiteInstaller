@@ -59,7 +59,9 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 ### Linux
 
 #### Download the latest release
+```bash
 
+```
 
 
 ### Windows
@@ -67,7 +69,28 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 Simply download the [latest release](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and follow the instructions.
 
-## Video Instructions
+## Utilities
+
+### Remove License and Configurations
+Sometimes you might want to remove the license and configurations from Burp Suite. This is useful when you want to use Burp Suite on a different machine, or when you want to reset Burp Suite to its default state. For this, you can use the `remove-license.bat` script.
+
+#### Windows
+Simply run the `remove-license.bat` script. This will remove the license and configurations stored on disk and on registry.
+
+#### Linux
+```bash
+
+```
+
+## Set up Update Server
+Feel free to fork this repo and set up your own update server. This is useful if you want to use your own keygen/loader, or if you want to use a different version of Burp Suite.
+
+The update server is responsible for loading the Dockerfile, checking for new updates, and creating a release on this repo.
+
+If you have docker installed, you can run the following command to start the update server:
+```bash
+
+```
 
 
 <!-- LICENSE -->
