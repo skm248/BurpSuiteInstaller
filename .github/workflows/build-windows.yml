@@ -12,10 +12,13 @@ jobs:
     steps:
       - name: Check out repo        
         uses: actions/checkout@v2
+
       - name: Compile version-updater (golang)
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+
+      - name: Build version-updater
         run: |
           go build -o version-updater.exe version-updater.go
         
