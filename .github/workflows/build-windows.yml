@@ -1,0 +1,12 @@
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build_windows_artifacts:
+    name: Build Windows Installer and Portable editions
+    runs-on: windows-2019
+    steps:
+      - name: Check out repo        
+        uses: actions/checkout@v2
