@@ -13,7 +13,6 @@ permissions:
 env:
   # Settings
   BURP_VERSION_FILE: BURP_VERSION
-  GIT_OUTPUT_TAG: v${{ steps.version.outputs.latest }}
 
   # Commit Settings
 #  CI_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
