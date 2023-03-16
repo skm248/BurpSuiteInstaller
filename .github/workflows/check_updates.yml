@@ -3,6 +3,8 @@ name: 🔄 Check Updates
 on:
   schedule:
     - cron:  '0 0 * * *' # Every day at midnight
+  workflow_dispatch:
+
 
 jobs:
   check_updates:
