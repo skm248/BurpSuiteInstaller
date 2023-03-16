@@ -16,9 +16,9 @@ env:
   GIT_OUTPUT_TAG: v${{ steps.version.outputs.latest }}
 
   # Commit Settings
-  CI_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
-  CI_COMMIT_USERNAME: github-actions[bot]
-  CI_COMMIT_EMAIL: github-actions[bot]@users.noreply.github.com
+#  CI_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
+#  CI_COMMIT_USERNAME: github-actions[bot]
+#  CI_COMMIT_EMAIL: github-actions[bot]@users.noreply.github.com
 
 jobs:
   check_updates:
