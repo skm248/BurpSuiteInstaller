@@ -42,14 +42,15 @@ jobs:
           chmod +x ./version-updater
           currenthash=$(sha256sum ${{ env.BURP_VERSION_FILE }} | cut -d ' ' -f 1)
           ./version-updater > ${{ env.BURP_VERSION_FILE }}
-          echo "latest=$(cat ${{ env.BURP_VERSION_FILE }})" >> $GITHUB_OUTPUT
+          version=$(cat ${{ env.BURP_VERSION_FILE }})
+          echo "latest=$version" >> $GITHUB_OUTPUT
           echo "Updated version hashes: $currenthash -> $latesthash"
           latesthash=$(sha256sum ${{ env.BURP_VERSION_FILE }} | cut -d ' ' -f 1)
           if [ "$currenthash" != "$latesthash" ]; then
-            echo "### 🚀 New Version - ${{ steps.version.outputs.latest }}" >> $GITHUB_STEP_SUMMARY
+            echo "### 🚀 New Version - $version" >> $GITHUB_STEP_SUMMARY
             echo "changes_detected=true" >> $GITHUB_OUTPUT
           else
-            echo "### Up to date! (${{ steps.version.outputs.latest }})" >> $GITHUB_STEP_SUMMARY
+            echo "### Up to date! ($version)" >> $GITHUB_STEP_SUMMARY
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
