@@ -134,4 +134,5 @@ func main() {
 			os.Exit(0)
 		}
 	}
+	log.Fatalln("No matching results found")
 }
