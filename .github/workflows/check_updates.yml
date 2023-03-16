@@ -28,6 +28,7 @@ jobs:
           chmod +x ./version-updater
           echo "latest=$(./version-updater)" >> $GITHUB_OUTPUT
 
-      - name: Print latest version
-        run: echo "🚀 Latest Version - ${{ steps.version.outputs.latest }}"
+      - name: Summary
+        run: echo "### 🚀 Latest Version - ${{ steps.version.outputs.latest }}" >> $GITHUB_STEP_SUMMARY
+
 
