@@ -24,7 +24,7 @@ jobs:
       GH_EMAIL: github-actions[bot]@users.noreply.github.com
 
       # Commit Settings
-      GH_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
+      #GH_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
 
     steps:
       - name: Check out repo
