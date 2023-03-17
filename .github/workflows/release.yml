@@ -16,8 +16,7 @@ permissions:
 jobs:
   release:
     name: Release new version
-    needs: check_updates
-    if: needs.check_updates.outputs.changes_detected == 'true'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
       GH_USERNAME: github-actions[bot]
