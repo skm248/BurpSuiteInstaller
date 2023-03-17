@@ -13,20 +13,18 @@ permissions:
 
 
 jobs:
-# This job is only run if the check_updates job has found a new version.
-# It will download the new version and upload it to the release.
-release:
-  name: Release new version
-  needs: check_updates
-  if: needs.check_updates.outputs.changes_detected == 'true'
-  runs-on: ubuntu-latest
-  env:
-    GH_USERNAME: github-actions[bot]
-    GH_EMAIL: github-actions[bot]@users.noreply.github.com
+  release:
+    name: Release new version
+    needs: check_updates
+    if: needs.check_updates.outputs.changes_detected == 'true'
+    runs-on: ubuntu-latest
+    env:
+      GH_USERNAME: github-actions[bot]
+      GH_EMAIL: github-actions[bot]@users.noreply.github.com
 
-    # Commit Settings
-    GH_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
+      # Commit Settings
+      GH_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
 
-  steps:
-    - name: Check out repo
-      uses: actions/checkout@v3
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
