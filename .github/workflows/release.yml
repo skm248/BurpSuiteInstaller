@@ -5,6 +5,7 @@ on:
     workflows: ["🔄 Check Updates"]
     types:
       - completed
+  workflow_dispatch:
 
 permissions:
   # Give the default GITHUB_TOKEN write permission to commit and push the
