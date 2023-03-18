@@ -18,13 +18,20 @@ jobs:
     name: Release new version
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    env:
-      GH_USERNAME: github-actions[bot]
-      GH_EMAIL: github-actions[bot]@users.noreply.github.com
-
-      # Commit Settings
-      #GH_COMMIT_MESSAGE: Version ${{ steps.version.outputs.latest }}
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
+
+      - name: Set Environment Variables
+        uses: tw3lveparsecs/github-actions-setvars@latest
+        with:
+          envFilePath: .github/variables/github-bot.env
+
+      - name: Download Version Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: version
+          path: ${{ env.BURP_VERSION_FILE }}
+
+      - run: |
+          ls -la
