@@ -47,4 +47,5 @@ jobs:
       - name: Upload Version Artifact
         uses: actions/upload-artifact@v3
         with:
+          name: version
           path: ${{ env.BURP_VERSION_FILE }}
