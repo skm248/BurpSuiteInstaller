@@ -44,7 +44,7 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: upload version as artifact
+      - name: Upload Version Artifact
         uses: actions/upload-artifact@v3
         with:
-          path: $BURP_VERSION_FILE
+          path: ${{ env.BURP_VERSION_FILE }}
