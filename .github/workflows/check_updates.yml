@@ -2,7 +2,7 @@ name: 🔄 Check Updates
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Every day at midnight
+    - cron: '0 20 * * *' # Every day at 20:00
   workflow_dispatch:
 
 
