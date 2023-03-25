@@ -14,9 +14,17 @@ permissions:
 
 
 jobs:
+  summary:
+    name: Summary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Summary
+        run: |
+          echo "Latest version: ${{ github.event.workflow_run.outputs.latest }}" >> $GITHUB_STEP_SUMMARY
+          echo "Changes detected: ${{ github.event.workflow_run.outputs.changes_detected }}" >> $GITHUB_STEP_SUMMARY
   release:
     name: Release new version
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.outputs.changes_detected == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
