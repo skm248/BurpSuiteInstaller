@@ -72,3 +72,29 @@ jobs:
         with:
           commit_message: "[AUTO] Update Burp Version"
           file_pattern: ${{ env.BURP_VERSION_FILE }} README.md
+
+  upload_artifact:
+    name: Upload Artifact (updates)
+    needs: check_updates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set Environment Variables
+        uses: tw3lveparsecs/github-actions-setvars@latest
+        with:
+          envFilePath: .github/variables/global.env
+
+      - name: Create Artifact
+        run: |
+          echo "${{ needs.check_updates.outputs.changes_detected }}" > changes_detected
+          echo "${{ needs.check_updates.outputs.latest }}" > latest_version
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: updates
+          path: |
+            changes_detected
+            latest_version
