@@ -56,6 +56,6 @@ jobs:
           cat ${{ env.BURP_VERSION_FILE }}
 
       - name: Commit & Push
-        use: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[AUTO] Update Burp Version"
