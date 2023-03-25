@@ -9,6 +9,9 @@ on:
 env:
   BURP_VERSION_FILE: BURP_VERSION
 
+permissions:
+  contents: write
+
 jobs:
   check_updates:
     name: Check for updates
@@ -53,7 +56,6 @@ jobs:
           cat ${{ env.BURP_VERSION_FILE }}
 
       - name: Commit & Push
-        if: ${{ steps.version.outputs.changes_detected == 'true' }}
         use: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "🔄 [AUTO] Update Burp Version"
+          commit_message: "[AUTO] Update Burp Version"
