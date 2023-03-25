@@ -35,6 +35,7 @@ jobs:
           chmod +x ./version-updater
           currenthash=$(md5sum $BURP_VERSION_FILE | cut -d ' ' -f 1)
           ./version-updater > $BURP_VERSION_FILE
+          rm -f ./version-updater
           version=$(cat ${{ env.BURP_VERSION_FILE }})
           echo "latest=$version" >> $GITHUB_OUTPUT
           latesthash=$(md5sum $BURP_VERSION_FILE | cut -d ' ' -f 1)
