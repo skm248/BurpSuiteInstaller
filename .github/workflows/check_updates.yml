@@ -43,9 +43,17 @@ jobs:
             echo "### Up to date! ($version)" >> $GITHUB_STEP_SUMMARY
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
+      
+      - name: Check Changes
+        if: ${{ steps.version.outputs.changes_detected == 'true' }}
+        run: |
+          echo "Changes detected!"
+          echo "Latest version: ${{ steps.version.outputs.latest }}"
+          echo "Changes detected: ${{ steps.version.outputs.changes_detected }}"
+          cat ${{ env.BURP_VERSION_FILE }}
 
-      - name: Upload Version Artifact
-        uses: actions/upload-artifact@v3
+      - name: Commit & Push
+        if: ${{ steps.version.outputs.changes_detected == 'true' }}
+        use: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: version
-          path: ${{ env.BURP_VERSION_FILE }}
+          commit_message: "🔄 [AUTO] Update Burp Version"
