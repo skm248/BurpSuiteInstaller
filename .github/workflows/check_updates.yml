@@ -5,10 +5,6 @@ on:
     - cron: '0 20 * * 6' # At 20:00 on Saturday
   workflow_dispatch:
 
-
-env:
-  BURP_VERSION_FILE: BURP_VERSION
-
 permissions:
   contents: write
 
@@ -22,6 +18,11 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
+
+      - name: Set Environment Variables
+        uses: tw3lveparsecs/github-actions-setvars@latest
+        with:
+          envFilePath: .github/variables/global.env
 
       - name: Install Golang
         uses: actions/setup-go@v3

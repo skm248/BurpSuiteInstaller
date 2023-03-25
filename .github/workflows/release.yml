@@ -25,13 +25,13 @@ jobs:
       - name: Set Environment Variables
         uses: tw3lveparsecs/github-actions-setvars@latest
         with:
-          envFilePath: .github/variables/github-bot.env
+          envFilePath: .github/variables/global.env
 
-      - name: Download Version Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: version
-          path: ${{ env.BURP_VERSION_FILE }}
+#      - name: Download Version Artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: version
+#          path: ${{ env.BURP_VERSION_FILE }}
 
       - run: |
           ls -la
