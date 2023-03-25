@@ -53,7 +53,7 @@ jobs:
         uses: cuchi/jinja2-action@v1.2.0
         with:
           template: README.md.j2
-          output: README.md
+          output_file: README.md
           strict: true
           variables: |
             burp_version=${{ steps.version.outputs.latest }}
