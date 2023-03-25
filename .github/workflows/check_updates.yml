@@ -48,7 +48,16 @@ jobs:
             echo "### Up to date! ($version)" >> $GITHUB_STEP_SUMMARY
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
-      
+
+      - name: Generate README.md
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: README.md.j2
+          output: README.md
+          strict: true
+          variables: |
+            burp_version=${{ steps.version.outputs.latest }}
+
       - name: Check Changes
         if: ${{ steps.version.outputs.changes_detected == 'true' }}
         run: |
@@ -62,4 +71,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[AUTO] Update Burp Version"
-          file_pattern: ${{ env.BURP_VERSION_FILE }}
+          file_pattern: ${{ env.BURP_VERSION_FILE }} README.md
