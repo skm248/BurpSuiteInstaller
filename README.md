@@ -7,7 +7,7 @@
   </a>
 
 <h3 align="center">Burp Suite Cracekd Activator (Keygen and Loader + Easy Install)</h3>
-<h3 align="center">2023.2.4</h3>
+<h3 align="center">Version 2023.2.4</h3>
 
   <p align="center">
     Install the most updated versions of Burp Suite (Pro) with easy-to-use installers and instructions in an automated fashion.
@@ -59,7 +59,17 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 ### Linux
 
-#### Download the latest release
+#### Download and Install
+```bash
+# Download
+wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.2.4&type=Linux'
+chmod +x burpsuite_pro_linux.sh
+
+# Can also be installed as non-root user
+sudo sh burpsuite_pro_linux.sh
+```
+
+#### Run
 ```bash
 
 ```
@@ -67,8 +77,13 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 ### Windows
 
+#### Using the unofficial installer
+Simply download the [Latest Installer for Windows](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and follow the instructions.
 
-Simply download the [latest release](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and follow the instructions.
+On the first run, you'll be required to proceed with the offline activation process.
+
+#### Using the official installer
+
 
 ## Utilities
 
