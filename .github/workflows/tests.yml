@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out repo
+            uses: actions/checkout@v3
+
+          - name: Set Environment Variables
+            uses: tw3lveparsecs/github-actions-setvars@latest
+            with:
+                envFilePath: .github/variables/global.env
+          - name: Download Latest Keygen/Loader
+            uses: robinraju/release-downloader@v1.7
+            with:
+                repository: "h3110w0r1d-y/BurpLoaderKeygen"
+                latest: true
+                fileName: BurpLoaderKeygen.jar
+                
+          - uses: actions/upload-artifact@v3
+            with:
+                name: Keygen
+                path: BurpLoaderKeygen.jar
