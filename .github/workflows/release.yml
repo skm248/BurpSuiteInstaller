@@ -18,6 +18,23 @@ jobs:
     name: Summary
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Set Environment Variables
+        uses: tw3lveparsecs/github-actions-setvars@latest
+        with:
+          envFilePath: .github/variables/global.env
+      
+      - name: Download Version Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: updates
+      
+      - name: Run ls
+        run: |
+          ls -la
+      
       - name: Print Summary
         run: |
           echo "Latest version: ${{ github.event.workflow_run.outputs.latest }}" >> $GITHUB_STEP_SUMMARY
