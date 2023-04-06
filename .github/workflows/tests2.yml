@@ -3,9 +3,22 @@ name: Tests 2
 on:
     workflow_dispatch:
 
+permissions:
+    contents: write
+
 jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - run: |
-                echo "Hello World"
+          - name: Download Latest Keygen/Loader
+            uses: robinraju/release-downloader@v1.7
+            with:
+                repository: "h3110w0r1d-y/BurpLoaderKeygen"
+                latest: true
+                fileName: BurpLoaderKeygen.jar
+
+          - name: Release
+            uses: ncipollo/release-action@v1
+            with:
+                artifacts: "release.tar.gz,foo/*.txt"
+                bodyFile: "body.md"
