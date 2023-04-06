@@ -1,0 +1,7 @@
+Activation Manual:
+	1. Run the keygen (You can click next to launch)
+	2. Copy the activation code to burp and proceed
+	3. Click "Manual Activation"
+	4. Copy Activation request to the keygen
+	5. Copy the generated activation response to burp and activate
+	6. That's it ;)
