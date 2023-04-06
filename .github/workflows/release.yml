@@ -2,7 +2,7 @@ name: 🎉 Release new version
 
 on:
   workflow_run:
-    workflows: ["🔄 Check Updates"]
+    workflows: ["🔄 Check Updates", "Tests"]
     types:
       - completed
   workflow_dispatch:
@@ -12,36 +12,39 @@ permissions:
   # added or changed files to the repository.
   contents: write
 
-
 jobs:
-  summary:
-    name: Summary
+  verify_updates:
+    name: Verify Updates
     runs-on: ubuntu-latest
+    outputs:
+      changes_detected: ${{ steps.verify.outputs.changes_detected }}
+      latest_version: ${{ steps.verify.outputs.latest_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Set Environment Variables
         uses: tw3lveparsecs/github-actions-setvars@latest
         with:
           envFilePath: .github/variables/global.env
-      
+
       - name: Download Version Artifact
         uses: actions/download-artifact@v3
         with:
           name: updates
-      
-      - name: Run ls
+
+      - name: Verify Changes
+        id: verify
         run: |
-          ls -la
-      
-      - name: Print Summary
-        run: |
-          echo "Latest version: ${{ github.event.workflow_run.outputs.latest }}" >> $GITHUB_STEP_SUMMARY
-          echo "Changes detected: ${{ github.event.workflow_run.outputs.changes_detected }}" >> $GITHUB_STEP_SUMMARY
+          echo "Changes detected: $(cat changes_detected)" >> $GITHUB_STEP_SUMMARY
+          echo "changes_detected=$(cat changes_detected)" >> $GITHUB_OUTPUT
+
+          echo "Latest version: $(cat latest_version)" >> $GITHUB_STEP_SUMMARY
+          echo "latest_version=$(cat latest_version)" >> $GITHUB_OUTPUT
   release:
     name: Release new version
-    if: ${{ github.event.workflow_run.outputs.changes_detected == 'true' }}
+    needs: [verify_updates]
+    if: ${{ needs.verify_updates.outputs.changes_detected == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
@@ -52,11 +55,12 @@ jobs:
         with:
           envFilePath: .github/variables/global.env
 
-#      - name: Download Version Artifact
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: version
-#          path: ${{ env.BURP_VERSION_FILE }}
+      - name: Download Latest Keygen/Loader
+        uses: robinraju/release-downloader@v1.7
+        with:
+          repository: "h3110w0r1d-y/BurpLoaderKeygen"
+          latest: true
+          fileName: BurpLoaderKeygen.jar
 
       - run: |
           ls -la
