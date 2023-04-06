@@ -8,6 +8,10 @@ on:
         required: true
         type: string
 
+env:
+    JDK_URL: https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip
+    JDK_VERSION: 17.0.2
+
 jobs:
   build_windows:
     name: Build for Windows
@@ -16,7 +20,9 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
-      - name: Download JAR
+      - name: Set up prerequisites
         run: |
+          cd windows
+          7z -h
           Invoke-WebRequest -Uri 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}' -OutFile BurpSuitePro.jar
           dir
