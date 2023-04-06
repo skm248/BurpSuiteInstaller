@@ -36,3 +36,12 @@ jobs:
       - run: |
           ls -la
           echo "Version: ${{ inputs.version }}"
+  
+  build_windows:
+    # Creates a new release if there were changes detected in the previous job.
+    # It will also upload the Burp Suite JAR file to the release.
+    name: Build Windows
+    secrets: inherit
+    with:
+      version: ${{ inputs.version }}
+    uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release-windows.yml@main
