@@ -7,10 +7,6 @@ on:
         description: 'Version to release'
         required: true
         type: string
-      release_notes:
-        description: 'Release notes'
-        required: true
-        type: string
 
 permissions:
   # Give the default GITHUB_TOKEN write permission to commit and push the
@@ -18,34 +14,6 @@ permissions:
   contents: write
 
 jobs:
-  # verify_updates:
-  #   name: Verify Updates
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     changes_detected: ${{ steps.verify.outputs.changes_detected }}
-  #     latest_version: ${{ steps.verify.outputs.latest_version }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-
-  #     - name: Set Environment Variables
-  #       uses: tw3lveparsecs/github-actions-setvars@latest
-  #       with:
-  #         envFilePath: .github/variables/global.env
-
-  #     - name: Download Version Artifact
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: updates
-
-  #     - name: Verify Changes
-  #       id: verify
-  #       run: |
-  #         echo "Changes detected: $(cat changes_detected)" >> $GITHUB_STEP_SUMMARY
-  #         echo "changes_detected=$(cat changes_detected)" >> $GITHUB_OUTPUT
-
-  #         echo "Latest version: $(cat latest_version)" >> $GITHUB_STEP_SUMMARY
-  #         echo "latest_version=$(cat latest_version)" >> $GITHUB_OUTPUT
   release:
     name: Release new version
     runs-on: ubuntu-latest
@@ -67,3 +35,4 @@ jobs:
 
       - run: |
           ls -la
+          echo "Version: ${{ inputs.version }}"
