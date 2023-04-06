@@ -14,8 +14,9 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  release_to_github:
     name: Release new version
+    needs: [build_windows, build_linux]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
@@ -45,3 +46,10 @@ jobs:
     with:
       version: ${{ inputs.version }}
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release-windows.yml@main
+  
+  build_linux:
+    name: Build Linux
+    secrets: inherit
+    with:
+      version: ${{ inputs.version }}
+    uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release-linux.yml@main

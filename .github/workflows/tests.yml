@@ -7,10 +7,10 @@ permissions:
   contents: write
 
 jobs:
-  test:
+  prepare_release:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.get_version.outputs.version }}
+      version: ${{ steps.get_metadata.outputs.version }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
@@ -19,42 +19,20 @@ jobs:
         uses: tw3lveparsecs/github-actions-setvars@latest
         with:
           envFilePath: .github/variables/global.env
-
-      # - name: Download Latest Keygen/Loader
-      #   uses: robinraju/release-downloader@v1.7
-      #   with:
-      #     repository: "h3110w0r1d-y/BurpLoaderKeygen"
-      #     latest: true
-      #     fileName: BurpLoaderKeygen.jar
-
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Keygen
-      #     path: BurpLoaderKeygen.jar
       
-      - name: Create MOCK Artifact (updates)
-        id: get_version
+      - name: Retrieve Release Metadata
+        id: get_metadata
         run: |
-          echo "2023.2.4" > latest_version
-          echo "true" > changes_detected
-          echo "version=2023.2.4" >> $GITHUB_OUTPUT
+          echo "version=$(cat ${{ env.BURP_VERSION_FILE }})" >> $GITHUB_OUTPUT
           
-      - name: Upload MOCK Artifact (updates)
-        uses: actions/upload-artifact@v3
-        with:
-          name: updates
-          path: |
-            changes_detected
-            latest_version      
-  
   create_release:
     # Creates a new release if there were changes detected in the previous job.
     # It will also upload the Burp Suite JAR file to the release.
     name: Create Release
-    needs: test
+    needs: prepare_release
     secrets: inherit
     with:
-      version: ${{ needs.test.outputs.version }}
+      version: ${{ needs.prepare_release.outputs.version }}
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main
     
           

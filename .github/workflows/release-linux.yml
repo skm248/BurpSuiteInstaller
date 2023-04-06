@@ -1,0 +1,19 @@
+name: 🟢 Build Linux
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: "Version of the application"
+        required: true
+        type: string
+
+jobs:
+  build_linux:
+    name: Build for Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+      
+      
