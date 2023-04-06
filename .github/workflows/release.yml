@@ -43,7 +43,7 @@ jobs:
           echo "latest_version=$(cat latest_version)" >> $GITHUB_OUTPUT
   release:
     name: Release new version
-    needs: [verify_updates]
+    needs: verify_updates
     if: ${{ needs.verify_updates.outputs.changes_detected == 'true' }}
     runs-on: ubuntu-latest
     steps:
