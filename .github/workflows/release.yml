@@ -1,11 +1,16 @@
 name: 🎉 Release new version
 
 on:
-  workflow_run:
-    workflows: ["🔄 Check Updates", "Tests"]
-    types:
-      - completed
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+        type: string
+      release_notes:
+        description: 'Release notes'
+        required: true
+        type: string
 
 permissions:
   # Give the default GITHUB_TOKEN write permission to commit and push the

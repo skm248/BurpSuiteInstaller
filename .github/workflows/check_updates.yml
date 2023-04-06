@@ -80,3 +80,13 @@ jobs:
           path: |
             changes_detected
             latest_version      
+
+  create_release:
+    # Creates a new release if there were changes detected in the previous job.
+    # It will also upload the Burp Suite JAR file to the release.
+    name: Create Release
+    needs: check_updates
+    if: needs.check_updates.outputs.changes_detected == 'true'
+    secrets: inherit
+    uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main
+    
