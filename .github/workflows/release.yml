@@ -18,38 +18,36 @@ permissions:
   contents: write
 
 jobs:
-  verify_updates:
-    name: Verify Updates
-    runs-on: ubuntu-latest
-    outputs:
-      changes_detected: ${{ steps.verify.outputs.changes_detected }}
-      latest_version: ${{ steps.verify.outputs.latest_version }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # verify_updates:
+  #   name: Verify Updates
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     changes_detected: ${{ steps.verify.outputs.changes_detected }}
+  #     latest_version: ${{ steps.verify.outputs.latest_version }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Set Environment Variables
-        uses: tw3lveparsecs/github-actions-setvars@latest
-        with:
-          envFilePath: .github/variables/global.env
+  #     - name: Set Environment Variables
+  #       uses: tw3lveparsecs/github-actions-setvars@latest
+  #       with:
+  #         envFilePath: .github/variables/global.env
 
-      - name: Download Version Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: updates
+  #     - name: Download Version Artifact
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: updates
 
-      - name: Verify Changes
-        id: verify
-        run: |
-          echo "Changes detected: $(cat changes_detected)" >> $GITHUB_STEP_SUMMARY
-          echo "changes_detected=$(cat changes_detected)" >> $GITHUB_OUTPUT
+  #     - name: Verify Changes
+  #       id: verify
+  #       run: |
+  #         echo "Changes detected: $(cat changes_detected)" >> $GITHUB_STEP_SUMMARY
+  #         echo "changes_detected=$(cat changes_detected)" >> $GITHUB_OUTPUT
 
-          echo "Latest version: $(cat latest_version)" >> $GITHUB_STEP_SUMMARY
-          echo "latest_version=$(cat latest_version)" >> $GITHUB_OUTPUT
+  #         echo "Latest version: $(cat latest_version)" >> $GITHUB_STEP_SUMMARY
+  #         echo "latest_version=$(cat latest_version)" >> $GITHUB_OUTPUT
   release:
     name: Release new version
-    needs: verify_updates
-    if: ${{ needs.verify_updates.outputs.changes_detected == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
