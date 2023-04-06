@@ -10,6 +10,10 @@ permissions:
 
 jobs:
   check_updates:
+  # Checks for updates to Burp Suite, by compiling the version-updater.go file and running it.
+  # If there is a newer version, it will update the BURP_VERSION file and commit the changes.
+  # Also, it will generate a new README.md file with the new version number and URLs.
+  # Finally, it will upload the latest version number and a boolean indicating if there were changes to the 'updates' artifact.
     name: Check for updates
     runs-on: ubuntu-latest
     outputs:
@@ -58,43 +62,21 @@ jobs:
           variables: |
             burp_version=${{ steps.version.outputs.latest }}
 
-      - name: Check Changes
-        if: ${{ steps.version.outputs.changes_detected == 'true' }}
-        run: |
-          echo "Changes detected!"
-          echo "Latest version: ${{ steps.version.outputs.latest }}"
-          echo "Changes detected: ${{ steps.version.outputs.changes_detected }}"
-          cat ${{ env.BURP_VERSION_FILE }}
-          git status
-
       - name: Commit & Push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[AUTO] Update Burp Version"
           file_pattern: ${{ env.BURP_VERSION_FILE }} README.md
 
-  upload_artifact:
-    name: Upload Artifact (updates)
-    needs: check_updates
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v3
-
-      - name: Set Environment Variables
-        uses: tw3lveparsecs/github-actions-setvars@latest
-        with:
-          envFilePath: .github/variables/global.env
-
-      - name: Create Artifact
+      - name: Create Artifact (updates)
         run: |
-          echo "${{ needs.check_updates.outputs.changes_detected }}" > changes_detected
-          echo "${{ needs.check_updates.outputs.latest }}" > latest_version
-
-      - name: Upload Artifact
+            echo "${{ steps.version.outputs.latest }}" > latest_version
+            echo "${{ steps.version.outputs.changes_detected }}" > changes_detected
+            
+      - name: Upload Artifact (updates)
         uses: actions/upload-artifact@v3
         with:
           name: updates
           path: |
             changes_detected
-            latest_version
+            latest_version      
