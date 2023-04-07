@@ -35,10 +35,16 @@ jobs:
           repository: "h3110w0r1d-y/BurpLoaderKeygen"
           latest: true
           fileName: BurpLoaderKeygen.jar
-
-      - run: |
-          ls -la
-          echo "Version: ${{ inputs.version }}"
+      
+      - name: Release to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+            artifactErrorsFailBuild: true
+            artifacts: "BurpLoaderKeygen.jar"
+            name: v${{ inputs.version }}
+            makeLatest: true
+            tag: ${{ inputs.version }}
+            commit: ${{ inputs.commit_hash }}
   
   build_windows:
     # Creates a new release if there were changes detected in the previous job.

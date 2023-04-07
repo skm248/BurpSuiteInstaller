@@ -57,7 +57,7 @@ jobs:
       - name: Generate README.md
         uses: cuchi/jinja2-action@v1.2.0
         with:
-          template: README.md.j2
+          template: readme-assets/README.md.j2
           output_file: README.md
           strict: true
           variables: |
