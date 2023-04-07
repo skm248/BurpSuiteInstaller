@@ -25,3 +25,4 @@ jobs:
                 artifacts: "BurpLoaderKeygen.jar"
                 body: "Latest Keygen"
                 makeLatest: true
+                tag: "latest-keygen"
