@@ -39,7 +39,7 @@ jobs:
       - name: Generate Release Notes
         run: |
           pip3 install requests Jinja2 html2markdown
-          python3 genete_release_notes.py ${{ inputs.version }} > release_notes.md
+          python3 generate_release_notes.py ${{ inputs.version }} > release_notes.md
       
       - name: Release to GitHub
         uses: ncipollo/release-action@v1

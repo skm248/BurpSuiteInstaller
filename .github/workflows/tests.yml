@@ -13,7 +13,8 @@ jobs:
     name: Create Release
     secrets: inherit
     with:
-      version: 2023.2.3
+      version: 2023.3.2
+      commit_hash: 443a306eafebf8fbce270515ce132ef417e9722d
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main
     
           
