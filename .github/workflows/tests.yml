@@ -6,33 +6,14 @@ on:
 permissions:
   contents: write
 
-jobs:
-  prepare_release:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.get_metadata.outputs.version }}
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v3
-
-      - name: Set Environment Variables
-        uses: tw3lveparsecs/github-actions-setvars@latest
-        with:
-          envFilePath: .github/variables/global.env
-      
-      - name: Retrieve Release Metadata
-        id: get_metadata
-        run: |
-          echo "version=2023.2.3" >> $GITHUB_OUTPUT
-          
+jobs: 
   create_release:
     # Creates a new release if there were changes detected in the previous job.
     # It will also upload the Burp Suite JAR file to the release.
     name: Create Release
-    needs: prepare_release
     secrets: inherit
     with:
-      version: ${{ needs.prepare_release.outputs.version }}
+      version: 2023.2.3
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main
     
           

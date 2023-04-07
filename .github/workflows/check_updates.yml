@@ -19,6 +19,7 @@ jobs:
     outputs:
       latest: ${{ steps.version.outputs.latest }}
       changes_detected: ${{ steps.version.outputs.changes_detected }}
+      commit_hash: ${{ steps.commit.outputs.commit_hash }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
@@ -63,23 +64,11 @@ jobs:
             burp_version=${{ steps.version.outputs.latest }}
 
       - name: Commit & Push
+        id: commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[AUTO] Update Burp Version"
-          file_pattern: ${{ env.BURP_VERSION_FILE }} README.md
-
-      - name: Create Artifact (updates)
-        run: |
-            echo "${{ steps.version.outputs.latest }}" > latest_version
-            echo "${{ steps.version.outputs.changes_detected }}" > changes_detected
-            
-      - name: Upload Artifact (updates)
-        uses: actions/upload-artifact@v3
-        with:
-          name: updates
-          path: |
-            changes_detected
-            latest_version      
+          file_pattern: ${{ env.BURP_VERSION_FILE }} README.md 
 
   create_release:
     # Creates a new release if there were changes detected in the previous job.
@@ -90,4 +79,5 @@ jobs:
     secrets: inherit
     with:
       version: ${{ needs.check_updates.outputs.latest }}
+      commit_hash: ${{ needs.check_updates.outputs.commit_hash }}
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main

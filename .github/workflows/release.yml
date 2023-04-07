@@ -7,6 +7,10 @@ on:
         description: 'Version to release'
         required: true
         type: string
+      commit_hash:
+        description: 'Commit to tag and release'
+        required: true
+        type: string
 
 permissions:
   contents: write

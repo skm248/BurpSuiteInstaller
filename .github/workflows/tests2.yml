@@ -3,13 +3,14 @@ name: Tests 2
 on:
     workflow_dispatch:
 
-permissions:
-    contents: write
 
 jobs:
     test:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
+
           - name: Download Latest Keygen/Loader
             uses: robinraju/release-downloader@v1.7
             with:
@@ -20,5 +21,11 @@ jobs:
           - name: Release
             uses: ncipollo/release-action@v1
             with:
-                artifacts: "release.tar.gz,foo/*.txt"
-                bodyFile: "body.md"
+                artifactErrorsFailBuild: true
+                artifacts: "BurpLoaderKeygen.jar"
+                body: "Test Body"
+                makeLatest: true
+                name: v2023.2.3
+                tag: 2023.2.3
+                
+                commit: ${{ github.sha }}
