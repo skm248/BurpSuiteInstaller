@@ -6,7 +6,7 @@
     <img src="readme-assets/title-logo.png" alt="Logo" height="150">
   </a>
 
-<h3 align="center">Burp Suite Cracekd Activator (Keygen and Loader + Easy Install)</h3>
+<h3 align="center">Burp Suite Cracked Activator (Keygen and Loader + Easy Install)</h3>
 <h3 align="center">Version {{ burp_version }}</h3>
 
   <p align="center">
@@ -23,6 +23,8 @@
 
 </div>
 
+## Disclaimer
+This is for educational purposes only. I am not responsible for any damage caused by this software. Use at your own risk.
 
 
 <!-- ABOUT THE PROJECT -->
@@ -65,15 +67,14 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version={{ burp_version }}&type=Linux'
 chmod +x burpsuite_pro_linux.sh
 
-# Can also be installed as non-root user
-sudo sh burpsuite_pro_linux.sh
+# Can also be installed as root user (for all users)
+./burpsuite_pro_linux.sh
+
+# Install Burp Suite Using the GUI
+
+# Run the patcher
+curl -fsSL 'https://raw.githubusercontent.com/mmgordon82/BurpSuiteInstaller/main/linux/burp-suite-patch.sh' | bash
 ```
-
-#### Run
-```bash
-
-```
-
 
 ### Windows
 
@@ -88,26 +89,15 @@ On the first run, you'll be required to proceed with the offline activation proc
 ## Utilities
 
 ### Remove License and Configurations
-Sometimes you might want to remove the license and configurations from Burp Suite. This is useful when you want to use Burp Suite on a different machine, or when you want to reset Burp Suite to its default state. For this, you can use the `remove-license.bat` script.
+Sometimes you might want to remove the license and configurations from Burp Suite. This is useful when you want to use Burp Suite on a different machine, or when you want to reset Burp Suite to its default state. For this, you can use the `reset-burp-settings.bat` script.
 
 #### Windows
-Simply run the `remove-license.bat` script. This will remove the license and configurations stored on disk and on registry.
+Simply run the `reset-burp-settings.bat` script. This will remove the license and configurations stored on disk and on registry.
 
 #### Linux
 ```bash
 
 ```
-
-## Set up Update Server
-Feel free to fork this repo and set up your own update server. This is useful if you want to use your own keygen/loader, or if you want to use a different version of Burp Suite.
-
-The update server is responsible for loading the Dockerfile, checking for new updates, and creating a release on this repo.
-
-If you have docker installed, you can run the following command to start the update server:
-```bash
-
-```
-
 
 <!-- LICENSE -->
 ## License
