@@ -36,12 +36,18 @@ jobs:
           latest: true
           fileName: BurpLoaderKeygen.jar
       
+      - name: Generate Release Notes
+        run: |
+          pip3 install requests Jinja2 html2markdown
+          python3 genete_release_notes.py ${{ inputs.version }} > release_notes.md
+      
       - name: Release to GitHub
         uses: ncipollo/release-action@v1
         with:
             artifactErrorsFailBuild: true
             artifacts: "BurpLoaderKeygen.jar"
             name: v${{ inputs.version }}
+            bodyFile: release_notes.md
             makeLatest: true
             tag: ${{ inputs.version }}
             commit: ${{ inputs.commit_hash }}
