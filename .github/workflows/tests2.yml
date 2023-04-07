@@ -23,9 +23,5 @@ jobs:
             with:
                 artifactErrorsFailBuild: true
                 artifacts: "BurpLoaderKeygen.jar"
-                body: "Test Body"
+                body: "Latest Keygen"
                 makeLatest: true
-                name: v2023.2.3
-                tag: 2023.2.3
-                
-                commit: ${{ github.sha }}
