@@ -23,7 +23,7 @@ jobs:
       - name: Retrieve Release Metadata
         id: get_metadata
         run: |
-          echo "version=$(cat ${{ env.BURP_VERSION_FILE }})" >> $GITHUB_OUTPUT
+          echo "version=2023.2.3" >> $GITHUB_OUTPUT
           
   create_release:
     # Creates a new release if there were changes detected in the previous job.

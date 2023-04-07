@@ -9,8 +9,9 @@ on:
         type: string
 
 env:
-    JDK_URL: https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip
-    JDK_VERSION: 17.0.2
+    # Download from https://jdk.java.net/19/
+    JDK_URL: https://download.java.net/java/GA/jdk19.0.2/fdb695a9d9064ad6b064dc6df578380c/7/GPL/openjdk-19.0.2_windows-x64_bin.zip
+    JDK_VERSION: 19.0.2
 
 jobs:
   build_windows:
@@ -24,5 +25,8 @@ jobs:
         run: |
           cd windows
           7z -h
-          Invoke-WebRequest -Uri 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}' -OutFile BurpSuitePro.jar
+          $url = 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}'
+          $response = Invoke-WebRequest -Uri $url -UseBasicParsing -Method Head
+          $filename = [System.IO.Path]::GetFileName($response.BaseResponse.ResponseUri.LocalPath)
+          Invoke-WebRequest -Uri $url -OutFile $filename
           dir

@@ -88,5 +88,6 @@ jobs:
     needs: check_updates
     if: needs.check_updates.outputs.changes_detected == 'true'
     secrets: inherit
+    with:
+      version: ${{ needs.check_updates.outputs.latest }}
     uses: mmgordon82/BurpSuiteInstaller/.github/workflows/release.yml@main
-    
