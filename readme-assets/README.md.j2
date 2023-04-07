@@ -73,7 +73,12 @@ chmod +x burpsuite_pro_linux.sh
 # Install Burp Suite Using the GUI
 
 # Run the patcher
-curl -fsSL 'https://raw.githubusercontent.com/mmgordon82/BurpSuiteInstaller/main/linux/burp-suite-patch.sh' | bash
+wget -O 'burp-suite-patch.sh' 'https://raw.githubusercontent.com/mmgordon82/BurpSuiteInstaller/main/linux/burp-suite-patch.sh'
+chmod +x burp-suite-patch.sh
+./burp-suite-patch.sh
+
+# Follow the patcher...
+# That's it!
 ```
 
 ### Windows
