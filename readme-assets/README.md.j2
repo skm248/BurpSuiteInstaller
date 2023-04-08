@@ -48,8 +48,7 @@ So in the past few weeks I decided to work on a solution that would mimic the of
 
 This repo includes:
  - `installer` for Windows - Installs everything needed, includes JDK, Burp and the keygen/loader.
- - `mini-patcher`, for those who prefer installing the proper EXE releases of Burp - activates the existing installed Burp.
- - `portable` edition, for those who want to carry it on a USB drive.
+ - `patcher`, for those who prefer installing the official releases of Burp - activates the existing installed Burp.
 
 The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/BurpLoaderKeygen).
 
@@ -63,7 +62,7 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 #### Download and Install
 ```bash
-# Download
+# Download the official release from PortSwigger
 wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version={{ burp_version }}&type=Linux'
 chmod +x burpsuite_pro_linux.sh
 
@@ -72,10 +71,10 @@ chmod +x burpsuite_pro_linux.sh
 
 # Install Burp Suite Using the GUI
 
-# Run the patcher
-wget -O 'burp-suite-patch.sh' 'https://raw.githubusercontent.com/mmgordon82/BurpSuiteInstaller/main/linux/burp-suite-patch.sh'
-chmod +x burp-suite-patch.sh
-./burp-suite-patch.sh
+# Download & Run the patcher
+wget -O 'burpsuite_pro_patcher_linux.sh' 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/burpsuite_pro_patcher_linux.sh'
+chmod +x burpsuite_pro_patcher_linux.sh
+./burpsuite_pro_patcher_linux.sh
 
 # Follow the patcher...
 # That's it!

@@ -28,13 +28,6 @@ jobs:
         uses: tw3lveparsecs/github-actions-setvars@latest
         with:
           envFilePath: .github/variables/global.env
-
-      - name: Download Latest Keygen/Loader
-        uses: robinraju/release-downloader@v1.7
-        with:
-          repository: "h3110w0r1d-y/BurpLoaderKeygen"
-          latest: true
-          fileName: BurpLoaderKeygen.jar
       
       - name: Download Linux Build
         uses: actions/download-artifact@v3
@@ -51,7 +44,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
             artifactErrorsFailBuild: true
-            artifacts: "BurpLoaderKeygen.jar,build-${{ env.LINUX_ARTIFACT_NAME }}/*"
+            artifacts: "build-${{ env.LINUX_ARTIFACT_NAME }}/*"
             name: v${{ inputs.version }}
             omitName: true
             bodyFile: release_notes.md

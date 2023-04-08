@@ -37,12 +37,12 @@ jobs:
           wget https://github.com/megastep/makeself/releases/download/release-2.5.0/makeself-2.5.0.run
           chmod +x makeself-2.5.0.run
           ./makeself-2.5.0.run --target .
-          ./makeself.sh archive/ BurpSuitePro-Patcher-Linux.sh "Patcher for Burp Suite Pro" ./burp-suite-patch.sh
+          ./makeself.sh archive/ burpsuite_pro_patcher_linux.sh "Patcher for Burp Suite Pro" ./burp-suite-patch.sh
       
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.LINUX_ARTIFACT_NAME }}
-          path: linux/BurpSuitePro-Patcher-Linux.sh
+          path: linux/burpsuite_pro_patcher_linux.sh
       
       
