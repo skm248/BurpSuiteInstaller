@@ -37,10 +37,9 @@ jobs:
           Invoke-WebRequest -OutFile 'burpsuite_pro.jar' -Uri $url
           Invoke-WebRequest -OutFile 'burploader.jar' -Uri 'https://github.com/h3110w0r1d-y/BurpLoaderKeygen/releases/latest/download/BurpLoaderKeygen.jar'
           cmd /c .\make-installer-gh-action.bat .\burpsuite_pro.jar ${{ inputs.version }}
-          cmd /c dir /s
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.WINDOWS_ARTIFACT_NAME }}
-          path: Build/*
+          path: Build\*
