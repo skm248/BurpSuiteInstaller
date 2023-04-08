@@ -16,7 +16,7 @@ env:
 
 jobs:
   build_installer:
-    name: Build Installer for Windows
+    name: Build for Windows
     runs-on: windows-2022
     steps:
       - name: Check out repo
@@ -50,4 +50,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.WINDOWS_ARTIFACT_NAME }}
-          path: windows/Build/*,windows-patcher/Build/*
+          path: |
+            windows/Build/*
+            windows-patcher/Build/*
