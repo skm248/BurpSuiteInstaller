@@ -2,8 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# Get current script path
+extract_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
 VMOPTIONS_FILENAME="BurpSuitePro.vmoptions"
-KEYGEN_JAR_FILENAME="burp-keygen.jar"
+KEYGEN_JAR_FILENAME="BurpLoaderKeygen.jar"
 
 function append_line() {
     filename=$1
@@ -53,8 +56,8 @@ select burp_dir in "${installs[@]}"; do
         append_line "$activation_file" "--add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED"
 
         # Download the keygen jar file
-        echo "[+] Downloading $KEYGEN_JAR_FILENAME file..."
-        wget -O "$burp_dir/$KEYGEN_JAR_FILENAME" 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/BurpLoaderKeygen.jar'
+        echo "[+] Copying $KEYGEN_JAR_FILENAME file..."
+        cp "$extract_path/$KEYGEN_JAR_FILENAME" "$burp_dir/$KEYGEN_JAR_FILENAME"
 
         echo "[+] Finished!"
         echo "
@@ -69,7 +72,7 @@ Activation Instructions:
         "
 
         read -p "Press [Enter] key to start BurpSuite and the Keygen to start the activation process..."
-
+        cd "$burp_dir"
         echo "[+] Starting Burp Suite..."
         "$burp_dir/BurpSuitePro" &
         echo "[+] Starting the keygen..."

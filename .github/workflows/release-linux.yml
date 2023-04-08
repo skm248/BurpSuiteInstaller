@@ -32,14 +32,17 @@ jobs:
         run: |
           cd linux/
           mkdir archive
-          cp ../BurpLoaderKeygen.jar archive/
-          cp burp-suite-patch.sh archive/
+          mv ../BurpLoaderKeygen.jar archive/
+          mv burp-suite-patch.sh archive/
           wget https://github.com/megastep/makeself/releases/download/release-2.5.0/makeself-2.5.0.run
           chmod +x makeself-2.5.0.run
           ./makeself-2.5.0.run --target .
-          rm makeself-2.5.0.run
-          ls -la
-          ./makeself.sh 
-        # ./makeself.sh --notemp --nox11 --nomd5 --noprogress --target . ../dist/linux/ ../dist/linux/install.sh "Install ${APP_NAME} ${APP_VERSION}" ./install.sh
+          ./makeself.sh archive/ BurpSuitePro-Patcher-Linux.sh "Patcher for Burp Suite Pro" ./burp-suite-patch.sh
+      
+      - name: Upload Artifact (linux)
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux
+          path: linux/BurpSuitePro-Patcher-Linux.sh
       
       
