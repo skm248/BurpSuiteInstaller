@@ -54,8 +54,7 @@ select burp_dir in "${installs[@]}"; do
 
         # Download the keygen jar file
         echo "[+] Downloading $KEYGEN_JAR_FILENAME file..."
-        #wget -O "$burp_dir/$KEYGEN_JAR_FILENAME" 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/BurpLoaderKeygen.jar'
-        wget -O "$burp_dir/$KEYGEN_JAR_FILENAME" 'http://192.168.220.1:8000/BurpLoaderKeygen.jar'
+        wget -O "$burp_dir/$KEYGEN_JAR_FILENAME" 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/BurpLoaderKeygen.jar'
 
         echo "[+] Finished!"
         echo "
@@ -80,3 +79,5 @@ Activation Instructions:
         echo "Invalid selection. Please choose again."
     fi
 done
+
+exit 0

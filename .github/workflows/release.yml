@@ -47,6 +47,7 @@ jobs:
             artifactErrorsFailBuild: true
             artifacts: "BurpLoaderKeygen.jar"
             name: v${{ inputs.version }}
+            omitName: true
             bodyFile: release_notes.md
             makeLatest: true
             tag: ${{ inputs.version }}

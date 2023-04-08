@@ -21,4 +21,25 @@ jobs:
         with:
           envFilePath: .github/variables/global.env
       
+      - name: Download Latest Keygen/Loader
+        uses: robinraju/release-downloader@v1.7
+        with:
+          repository: "h3110w0r1d-y/BurpLoaderKeygen"
+          latest: true
+          fileName: BurpLoaderKeygen.jar
+      
+      - name: Build Patcher for Linux
+        run: |
+          cd linux/
+          mkdir archive
+          cp ../BurpLoaderKeygen.jar archive/
+          cp burp-suite-patch.sh archive/
+          wget https://github.com/megastep/makeself/releases/download/release-2.5.0/makeself-2.5.0.run
+          chmod +x makeself-2.5.0.run
+          ./makeself-2.5.0.run --target .
+          rm makeself-2.5.0.run
+          ls -la
+          ./makeself.sh 
+        # ./makeself.sh --notemp --nox11 --nomd5 --noprogress --target . ../dist/linux/ ../dist/linux/install.sh "Install ${APP_NAME} ${APP_VERSION}" ./install.sh
+      
       
