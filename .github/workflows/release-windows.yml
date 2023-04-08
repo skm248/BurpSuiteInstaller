@@ -12,6 +12,7 @@ env:
     # Download from https://jdk.java.net/archive/
     JDK_URL: https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_windows-x64_bin.zip
     JDK_VERSION: 18.0.2 
+    WINDOWS_ARTIFACT_NAME: windows
 
 jobs:
   build_windows:
@@ -43,5 +44,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: windows
+          name: ${{ env.WINDOWS_ARTIFACT_NAME }}
           path: Build/*

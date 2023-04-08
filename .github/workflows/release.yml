@@ -35,6 +35,12 @@ jobs:
           name: ${{ env.LINUX_ARTIFACT_NAME }}
           path: build-${{ env.LINUX_ARTIFACT_NAME }}
       
+      - name: Download Windows Build
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.WINDOWS_ARTIFACT_NAME }}
+          path: build-${{ env.WINDOWS_ARTIFACT_NAME }}
+      
       - name: Generate Release Notes
         run: |
           pip3 install requests Jinja2 html2markdown
@@ -44,7 +50,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
             artifactErrorsFailBuild: true
-            artifacts: "build-${{ env.LINUX_ARTIFACT_NAME }}/*"
+            artifacts: "build-*/*"
             name: v${{ inputs.version }}
             omitName: true
             bodyFile: release_notes.md
