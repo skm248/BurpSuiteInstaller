@@ -15,14 +15,14 @@ env:
     WINDOWS_ARTIFACT_NAME: windows
 
 jobs:
-  build_windows:
-    name: Build for Windows
+  build_installer:
+    name: Build Installer for Windows
     runs-on: windows-2022
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
 
-      - name: Build
+      - name: Build Installer
         run: |
           cd .\windows\
 
@@ -37,11 +37,17 @@ jobs:
           Invoke-WebRequest -OutFile 'burploader.jar' -Uri 'https://github.com/h3110w0r1d-y/BurpLoaderKeygen/releases/latest/download/BurpLoaderKeygen.jar'
 
           cmd /c .\make-installer-gh-action.bat .\burpsuite_pro.jar ${{ inputs.version }}
-
+      
+      - name: Build Patcher
+        run: |
+          cd .\windows-patcher\
+          mkdir Build
+          Invoke-WebRequest -OutFile 'burploader.jar' -Uri 'https://github.com/h3110w0r1d-y/BurpLoaderKeygen/releases/latest/download/BurpLoaderKeygen.jar'
+          cmd /c .\make-patcher-gh-action.bat
 
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.WINDOWS_ARTIFACT_NAME }}
-          path: windows/Build/*
+          path: windows/Build/*,windows-patcher/Build/*

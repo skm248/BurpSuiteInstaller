@@ -1,0 +1,5 @@
+;!@Install@!UTF-8!
+Title="Burp Suite Professional Patcher"
+BeginPrompt="Do you want to patch Burp Suite Professional?"
+RunProgram="burploader.bat"
+;!@InstallEnd@!
