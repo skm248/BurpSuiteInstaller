@@ -36,7 +36,7 @@ InfoAfterFile=Post-Info.txt
 SetupIconFile=burp-suite-professional.ico
 UsePreviousAppDir=yes
 DisableProgramGroupPage=auto
-OutputBaseFilename=burpsuite_pro_windows_x64_v{#BurpVersion}
+OutputBaseFilename=burpsuite_pro_installer_windows_x64_v{#BurpVersion}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -61,9 +61,6 @@ Source: "{#BurpJarFile}"; DestDir: "{app}"; DestName: "burpsuite_pro.jar"; Flags
 
 ; Burp Loader jar file
 Source: "burploader.jar"; DestDir: "{app}"; Flags: ignoreversion
-
-; Burp Reset settings file
-Source: "reset-burp-settings.bat"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Icon file
 Source: "burp-suite-professional.ico"; DestDir: "{app}"; Flags: ignoreversion

@@ -20,13 +20,28 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
-
-      - name: Set up prerequisites
+      
+      - name: Set Current Working Directory
         run: |
-          cd windows
-          7z -h
+          cd .\windows\
+
+      - name: Set up JDK
+        run: |
+          Invoke-WebRequest -Uri '${{ env.JDK_URL }}' -OutFile 'jdk.zip'
+          Expand-Archive -Path 'jdk.zip' -DestinationPath '.'
+          Remove-Item 'jdk.zip'
+          $jdk_dir = (Get-ChildItem "jdk-*")[0].Name
+          Move-Item $jdk_dir "jdk"
+
+      - name: Build
+        run: |
           $url = 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}'
-          $response = Invoke-WebRequest -Uri $url -UseBasicParsing -Method Head
-          $filename = [System.IO.Path]::GetFileName($response.BaseResponse.ResponseUri.LocalPath)
-          Invoke-WebRequest -Uri $url -OutFile $filename
-          dir
+          Invoke-WebRequest -OutFile 'burpsuite_pro.jar' -Uri $url
+          Invoke-WebRequest -OutFile 'burploader.jar' -Uri 'https://github.com/h3110w0r1d-y/BurpLoaderKeygen/releases/latest/download/BurpLoaderKeygen.jar'
+          cmd /c .\make-installer-gh-action.bat .\burpsuite_pro.jar ${{ inputs.version }}
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows
+          path: Build/*
