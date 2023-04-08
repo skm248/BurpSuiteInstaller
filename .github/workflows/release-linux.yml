@@ -39,10 +39,10 @@ jobs:
           ./makeself-2.5.0.run --target .
           ./makeself.sh archive/ BurpSuitePro-Patcher-Linux.sh "Patcher for Burp Suite Pro" ./burp-suite-patch.sh
       
-      - name: Upload Artifact (linux)
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: linux
+          name: ${{ env.LINUX_ARTIFACT_NAME }}
           path: linux/BurpSuitePro-Patcher-Linux.sh
       
       

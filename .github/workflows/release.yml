@@ -36,6 +36,12 @@ jobs:
           latest: true
           fileName: BurpLoaderKeygen.jar
       
+      - name: Download Linux Build
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.LINUX_ARTIFACT_NAME }}
+          path: build-${{ env.LINUX_ARTIFACT_NAME }}
+      
       - name: Generate Release Notes
         run: |
           pip3 install requests Jinja2 html2markdown
@@ -45,7 +51,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
             artifactErrorsFailBuild: true
-            artifacts: "BurpLoaderKeygen.jar"
+            artifacts: "BurpLoaderKeygen.jar,build-${{ env.LINUX_ARTIFACT_NAME }}/*"
             name: v${{ inputs.version }}
             omitName: true
             bodyFile: release_notes.md
