@@ -21,21 +21,18 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
-      
-      - name: Set Current Working Directory
+
+      - name: Build
         run: |
           cd .\windows\
-
-      - name: Set up JDK
-        run: |
+          pwd
+            
           Invoke-WebRequest -Uri '${{ env.JDK_URL }}' -OutFile 'jdk.zip'
           Expand-Archive -Path 'jdk.zip' -DestinationPath '.'
           Remove-Item 'jdk.zip'
           $jdk_dir = (Get-ChildItem "jdk-*")[0].Name
           Move-Item $jdk_dir "jdk"
 
-      - name: Build
-        run: |
           $url = 'https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar&version=${{ inputs.version }}'
           Invoke-WebRequest -OutFile 'burpsuite_pro.jar' -Uri $url
           Invoke-WebRequest -OutFile 'burploader.jar' -Uri 'https://github.com/h3110w0r1d-y/BurpLoaderKeygen/releases/latest/download/BurpLoaderKeygen.jar'
