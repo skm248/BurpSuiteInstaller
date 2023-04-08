@@ -6,8 +6,8 @@
     <img src="readme-assets/title-logo.png" alt="Logo" height="150">
   </a>
 
-<h3 align="center">Burp Suite Cracekd Activator (Keygen and Loader + Easy Install)</h3>
-<h3 align="center">Version 2023.2.4</h3>
+<h3 align="center">Burp Suite Cracked Activator (Keygen and Loader + Easy Install)</h3>
+<h3 align="center">Version 2023.3.2</h3>
 
   <p align="center">
     Install the most updated versions of Burp Suite (Pro) with easy-to-use installers and instructions in an automated fashion.
@@ -23,6 +23,8 @@
 
 </div>
 
+## Disclaimer
+This is for educational purposes only. I am not responsible for any damage caused by this software. Use at your own risk.
 
 
 <!-- ABOUT THE PROJECT -->
@@ -46,8 +48,7 @@ So in the past few weeks I decided to work on a solution that would mimic the of
 
 This repo includes:
  - `installer` for Windows - Installs everything needed, includes JDK, Burp and the keygen/loader.
- - `mini-patcher`, for those who prefer installing the proper EXE releases of Burp - activates the existing installed Burp.
- - `portable` edition, for those who want to carry it on a USB drive.
+ - `patcher`, for those who prefer installing the official releases of Burp - activates the existing installed Burp.
 
 The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/BurpLoaderKeygen).
 
@@ -61,19 +62,23 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 
 #### Download and Install
 ```bash
-# Download
-wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.2.4&type=Linux'
+# Download the official release from PortSwigger
+wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.3.2&type=Linux'
 chmod +x burpsuite_pro_linux.sh
 
-# Can also be installed as non-root user
-sudo sh burpsuite_pro_linux.sh
+# Can also be installed as root user (for all users)
+./burpsuite_pro_linux.sh
+
+# Install Burp Suite Using the GUI
+
+# Download & Run the patcher
+wget -O 'burpsuite_pro_patcher_linux.sh' 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/burpsuite_pro_patcher_linux.sh'
+chmod +x burpsuite_pro_patcher_linux.sh
+./burpsuite_pro_patcher_linux.sh
+
+# Follow the patcher...
+# That's it!
 ```
-
-#### Run
-```bash
-
-```
-
 
 ### Windows
 
@@ -88,26 +93,15 @@ On the first run, you'll be required to proceed with the offline activation proc
 ## Utilities
 
 ### Remove License and Configurations
-Sometimes you might want to remove the license and configurations from Burp Suite. This is useful when you want to use Burp Suite on a different machine, or when you want to reset Burp Suite to its default state. For this, you can use the `remove-license.bat` script.
+Sometimes you might want to remove the license and configurations from Burp Suite. This is useful when you want to use Burp Suite on a different machine, or when you want to reset Burp Suite to its default state. For this, you can use the `reset-burp-settings.bat` script.
 
 #### Windows
-Simply run the `remove-license.bat` script. This will remove the license and configurations stored on disk and on registry.
+Simply run the `reset-burp-settings.bat` script. This will remove the license and configurations stored on disk and on registry.
 
 #### Linux
 ```bash
 
 ```
-
-## Set up Update Server
-Feel free to fork this repo and set up your own update server. This is useful if you want to use your own keygen/loader, or if you want to use a different version of Burp Suite.
-
-The update server is responsible for loading the Dockerfile, checking for new updates, and creating a release on this repo.
-
-If you have docker installed, you can run the following command to start the update server:
-```bash
-
-```
-
 
 <!-- LICENSE -->
 ## License
