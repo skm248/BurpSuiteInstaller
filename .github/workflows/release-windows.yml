@@ -44,4 +44,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.WINDOWS_ARTIFACT_NAME }}
-          path: Build\burpsuite_pro_installer_windows_x64_v${{ inputs.version }}.exe
+          path: windows/Build/*
