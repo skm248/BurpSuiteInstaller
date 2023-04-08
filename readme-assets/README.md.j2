@@ -23,7 +23,7 @@
 
 </div>
 
-## Disclaimer
+## Disclaimer (Legal Notice)
 This is for educational purposes only. I am not responsible for any damage caused by this software. Use at your own risk.
 
 
@@ -90,8 +90,7 @@ On the first run, you'll be required to proceed with the offline activation proc
 #### Using the official installer
 Download and install the [official installer from PortSwigger](https://portswigger-cdn.net/burp/releases/download?product=pro&version={{ burp_version }}&type=WindowsX64).
 
-After the installation is complete, download and run the [patcher for Windows]().
-
+After the installation is complete, download and run the [patcher for Windows](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and run it.
 
 ## Utilities
 
@@ -102,8 +101,10 @@ Sometimes you might want to remove the license and configurations from Burp Suit
 Simply run the `reset-burp-settings.bat` script. This will remove the license and configurations stored on disk and on registry.
 
 #### Linux
-```bash
+Instead of registry, Linux uses the `~/.java/.userPrefs/burp/` directory to store the configurations. To remove the license and configurations, simply run the following command:
 
+```bash
+rm -rvf ~/.java/.userPrefs/burp/
 ```
 
 <!-- LICENSE -->
