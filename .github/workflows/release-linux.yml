@@ -34,6 +34,8 @@ jobs:
           mkdir archive
           mv ../BurpLoaderKeygen.jar archive/
           mv burp-suite-patch.sh archive/
+          chmod a+x archive/burp-suite-patch.sh
+          chmod a+x archive/BurpLoaderKeygen.jar
           wget https://github.com/megastep/makeself/releases/download/release-2.5.0/makeself-2.5.0.run
           chmod +x makeself-2.5.0.run
           ./makeself-2.5.0.run --target .
