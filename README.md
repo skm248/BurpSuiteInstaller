@@ -72,7 +72,7 @@ chmod +x burpsuite_pro_linux.sh
 # Install Burp Suite Using the GUI
 
 # Download & Run the patcher
-wget -O 'burpsuite_pro_patcher_linux.sh' 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/burpsuite_pro_patcher_linux.sh'
+wget -O 'burpsuite_pro_patcher_linux.sh' 'https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest/download/burpsuite_pro_patcher_linux_generic.sh'
 chmod +x burpsuite_pro_patcher_linux.sh
 ./burpsuite_pro_patcher_linux.sh
 
