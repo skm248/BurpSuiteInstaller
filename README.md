@@ -7,7 +7,7 @@
   </a>
 
 <h3 align="center">Burp Suite Cracked Activator (Keygen and Loader + Easy Install)</h3>
-<h3 align="center">Version 2023.4.5</h3>
+<h3 align="center">Version 2023.5.2</h3>
 
   <p align="center">
     Install the most updated versions of Burp Suite (Pro) with easy-to-use installers and instructions in an automated fashion.
@@ -63,7 +63,7 @@ The keygen used is written by [h3110w0r1d-y](https://github.com/h3110w0r1d-y/Bur
 #### Download and Install
 ```bash
 # Download the official release from PortSwigger
-wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.4.5&type=Linux'
+wget -O 'burpsuite_pro_linux.sh' 'https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.5.2&type=Linux'
 chmod +x burpsuite_pro_linux.sh
 
 # Can also be installed as root user (for all users)
@@ -88,7 +88,7 @@ Simply download the [Latest Installer for Windows](https://github.com/mmgordon82
 On the first run, you'll be required to proceed with the offline activation process.
 
 #### Using the official installer
-Download and install the [official installer from PortSwigger](https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.4.5&type=WindowsX64).
+Download and install the [official installer from PortSwigger](https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.5.2&type=WindowsX64).
 
 After the installation is complete, download and run the [patcher for Windows](https://github.com/mmgordon82/BurpSuiteInstaller/releases/latest) and run it.
 
